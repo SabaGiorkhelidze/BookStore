@@ -5,14 +5,13 @@ import BackButton from "../Components/BackButton";
 import axios from "axios";
 
 type bookType = {
-  _id: string,
-  title: string,
-  author: string,
-  publishYear: number,
-  createdAt:  Date,
-  updatedAt: Date,
-
-}
+  _id: string;
+  title: string;
+  author: string;
+  publishYear: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
 const ShowBook = () => {
   const [book, setBook] = useState<bookType>({});
   const [loading, setLoading] = useState<boolean>(false);

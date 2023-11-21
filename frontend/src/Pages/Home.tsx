@@ -32,18 +32,26 @@ const Home: React.FC = () => {
   }, []);
   console.log(books);
 
+  const handleShowTypeChange = (newShowType: "table" | "card") => {
+    setShowType(newShowType);
+  };
+
   return (
     <div className="p-4">
       <div className="flex justify-center items-center gap-x-4">
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
-          onClick={() => setShowType("table")}
+          className={`border-b-2 border-${
+            showType === "table" ? "neutral-500" : "transparent"
+          } hover:scale-75 px-4 py-1 rounded-md`}
+          onClick={() => handleShowTypeChange("table")}
         >
           Table
         </button>
         <button
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
-          onClick={() => setShowType("card")}
+          className={`border-b-2 border-${
+            showType === "card" ? "neutral-500" : "transparent"
+          } hover:scale-75 px-4 py-1 rounded-md`}
+          onClick={() => handleShowTypeChange("card")}
         >
           Card
         </button>
