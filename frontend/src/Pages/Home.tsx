@@ -4,7 +4,7 @@ import Spinner from "../Components/Spinner";
 import { Link } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
 import BooksTable from "../Components/HomePageComponents/BooksTable";
-import BooksCard from "../Components/HomePageComponents/Books.Card";
+
 export type Book = {
   _id: string;
   title: string;
@@ -15,7 +15,6 @@ export type Book = {
 const Home: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [showType, setShowType] = useState<"table" | "card">("table");
 
   useEffect(() => {
     setLoading(true);
@@ -32,43 +31,15 @@ const Home: React.FC = () => {
   }, []);
   console.log(books);
 
-  const handleShowTypeChange = (newShowType: "table" | "card") => {
-    setShowType(newShowType);
-  };
-
   return (
     <div className="p-4">
-      <div className="flex justify-center items-center gap-x-4">
-        <button
-          className={`border-b-2 border-${
-            showType === "table" ? "neutral-500" : "transparent"
-          } hover:scale-75 px-4 py-1 rounded-md`}
-          onClick={() => handleShowTypeChange("table")}
-        >
-          Table
-        </button>
-        <button
-          className={`border-b-2 border-${
-            showType === "card" ? "neutral-500" : "transparent"
-          } hover:scale-75 px-4 py-1 rounded-md`}
-          onClick={() => handleShowTypeChange("card")}
-        >
-          Card
-        </button>
-      </div>
       <div className="flex justify-between items-center">
         <h1 className="text-3xl my-8">Books List</h1>
         <Link to="/books/create">
           <MdOutlineAddBox className="text-sky-800 text-4xl" />
         </Link>
       </div>
-      {loading ? (
-        <Spinner />
-      ) : showType === "table" ? (
-        <BooksTable books={books} />
-      ) : (
-        <BooksCard books={books} />
-      )}
+      {loading ? <Spinner /> : <BooksTable books={books} />}
     </div>
   );
 };

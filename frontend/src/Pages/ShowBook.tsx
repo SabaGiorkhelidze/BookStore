@@ -17,7 +17,16 @@ const ShowBook = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { id } = useParams<string>();
 
-  useEffect(() => {
+  const formattedDate = (bookDate: Date) =>
+    new Date(bookDate).toLocaleString("en-US", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  
+    useEffect(() => {
     setLoading(true);
     axios
       .get(`http://localhost:5555/books/${id}`)
@@ -37,30 +46,39 @@ const ShowBook = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Id</span>
-            <span>{book._id}</span>
+        <div className="w-full flex justify-around flex-row">
+          <div className="flex flex-col justify-start border-2 border-sky-400 rounded-xl w-fit pl-4 pr-24">
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Id</span>
+              <span>{book._id}</span>
+            </div>
+            <div className="flex flex-row justify-start">
+              <div className="my-4">
+                <span className=" mr-4 text-gray-500">Book</span>
+                <span>
+                  {book.title} - {book.author}
+                </span>
+              </div>
+              {/* {/* <div className="my-4 mx-5">
+                <span className="text-xl mr-4 text-gray-500">Author</span>
+                <span className=""></span> 
+              </div> */}
+            </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Publish Year</span>
+              <span>{book.publishYear}</span>
+            </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Created Date</span>
+              <span>{formattedDate(book.createdAt)}</span>
+            </div>
+            <div className="my-4">
+              <span className="text-xl mr-4 text-gray-500">Last Update</span>
+              <span>{formattedDate(book.updatedAt)}</span>
+            </div>
           </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Title</span>
-            <span>{book.title}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Author</span>
-            <span>{book.author}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Publish Year</span>
-            <span>{book.publishYear}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Created Date</span>
-            <span>{new Date(book.createdAt).toString()}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Created Date</span>
-            <span>{new Date(book.updatedAt).toString()}</span>
+          <div>
+
           </div>
         </div>
       )}

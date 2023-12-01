@@ -3,13 +3,25 @@ import BackButton from "../Components/BackButton";
 import Spinner from "../Components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const CreateBook = () => {
   const [title, setTitle] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
   const [publishYear, setPublishYear] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
   const navigate = useNavigate();
+
+  const buttonVariants = {
+    hover: {
+      color: "white",
+      backgroundColor: "rgb(40, 41, 43)",
+      scale: 1.02,
+      transition: {
+        duration: 0.2, // Duration of the animation
+      },
+    },
+  };
 
   const handleSaveBook = () => {
     const data: object = {
@@ -32,11 +44,11 @@ const CreateBook = () => {
   return (
     <div className="p-4">
       <BackButton />
-      <h1 className="text-3xl my-4">Create Book</h1>
+      <h1 className="text-3xl my-4 text-center">Create Book</h1>
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+        <div className="flex flex-col justify-center   rounded-xl w-[600px] p-4 mx-auto">
           <div className="my-4">
             <label htmlFor="" className="mr-4 text-gray-500 text-xl">
               Title
@@ -77,9 +89,14 @@ const CreateBook = () => {
             />
           </div>
 
-          <button className="p-2 bg-sky-300 m-8" onClick={handleSaveBook}>
+          <motion.button
+            className="py-2 bg-gray-500 my-8 rounded-lg"
+            onClick={handleSaveBook}
+            variants={buttonVariants}
+            whileHover="hover"
+          >
             Save
-          </button>
+          </motion.button>
         </div>
       )}
     </div>

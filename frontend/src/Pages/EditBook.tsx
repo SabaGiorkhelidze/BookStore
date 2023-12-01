@@ -52,7 +52,7 @@ const EditBook = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+        <div className="flex flex-col border-2 border-gray-400 rounded-xl w-[600px] p-4 mx-auto">
           <div className="my-4">
             <label htmlFor="" className="mr-4 text-gray-500 text-xl">
               Title
@@ -93,7 +93,7 @@ const EditBook = () => {
             />
           </div>
 
-          <button className="p-2 bg-sky-300 m-8" onClick={handleEditBook}>
+          <button className="p-2 bg-gray-500 text-white m-8" onClick={handleEditBook}>
             Save
           </button>
         </div>
