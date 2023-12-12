@@ -18,7 +18,7 @@ const CreateBook = () => {
       backgroundColor: "rgb(40, 41, 43)",
       scale: 1.02,
       transition: {
-        duration: 0.2, // Duration of the animation
+        duration: 0.2,
       },
     },
   };

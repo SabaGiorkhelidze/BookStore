@@ -29,7 +29,7 @@ const ShowBook = () => {
     useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
@@ -50,7 +50,7 @@ const ShowBook = () => {
           <div className="flex flex-col justify-start border-2 border-sky-400 rounded-xl w-fit pl-4 pr-24">
             <div className="my-4">
               <span className="text-xl mr-4 text-gray-500">Id</span>
-              <span>{book._id}</span>
+              <span>{book?._id}</span>
             </div>
             <div className="flex flex-row justify-start">
               <div className="my-4">
